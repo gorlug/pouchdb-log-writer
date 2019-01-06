@@ -1,0 +1,18 @@
+{
+    "db": {
+        "host": "couchdb-test",
+        "port": 5984,
+        "dbName": "dev-log"
+    },
+    "loggingUser": {
+        "username": "loggingUser",
+        "password": "somepassword"
+    },
+    "admin": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "logger": {
+        "path": "/tmp/pouchdb/pouchDBWrapper.log"
+    }
+}

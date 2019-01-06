@@ -1,12 +1,12 @@
 {
     "name": "@gorlug/log-file-writer",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Write pouchdb logs to file",
     "main": "build/main/index.js",
     "typings": "build/main/index.d.ts",
     "module": "build/module/index.js",
     "repository": "https://github.com/gorlug/@gorlug/log-file-writer",
-    "license": "MIT",
+    "license": "ISC",
     "keywords": [],
     "scripts": {
         "describe": "npm-scripts-info",
@@ -33,7 +33,7 @@
         "clean": "trash build test",
         "all": "run-s reset test cov:check doc:html",
         "prepare-release": "run-s all version doc:publish",
-        "start": "./node_modules/ts-node/dist/bin.js src/index.ts"
+        "start": "node build/main/index.js"
     },
     "scripts-info": {
         "info": "Display information about the package scripts",
@@ -52,10 +52,11 @@
         "node": ">=8.9"
     },
     "dependencies": {
-        "@gorlug/pouchdb": "git+ssh://git@git.gorlug.de:10022/nodejs/pouchdb.git#f57b7750f8fe0aab116a985879a35dc313a967eb",
+        "@gorlug/pouchdb": "git+ssh://git@git.gorlug.de:10022/nodejs/pouchdb.git#e1b9b906e6caa4730a58e1ede05d694aa21ad99a",
         "ts-node": "^7.0.1",
+        "typescript": "^3.2.2",
         "xmlhttprequest-ssl": "^1.5.5",
-        "typescript": "^3.2.2"
+        "yargs": "^12.0.5"
     },
     "devDependencies": {
         "@types/chai": "^4.1.7",
