@@ -4,7 +4,7 @@ import {Observable, of, throwError} from "rxjs";
 import {bindNodeCallback} from "rxjs/internal/observable/bindNodeCallback";
 import {catchError, concatMap} from "rxjs/operators";
 import {PouchDBWrapper, CouchDBConf, CouchDBWrapper, Credentials,
-    LogDocument, LogDocumentGenerator, Logger, ValueWithLogger} from "@gorlug/pouchdb";
+    LogDocument, LogDocumentGenerator, Logger, ValueWithLogger} from "@gorlug/pouchdb-rxjs";
 import {Buffer} from "buffer";
 import {XMLHttpRequest} from "xmlhttprequest-ssl";
 import {LogFileWriter} from "./LogFileWriter";
@@ -123,9 +123,9 @@ export class LoggerToFile {
 
     private createCouchDBConf(config: LoggerToFileConfig) {
         const couchdbConf: CouchDBConf = new CouchDBConf();
-        couchdbConf.host = config.db.host;
-        couchdbConf.port = config.db.port;
-        couchdbConf.dbName = config.db.dbName;
+        couchdbConf.setHost(config.db.host);
+        couchdbConf.setPort(config.db.port);
+        couchdbConf.setDBName(config.db.dbName);
         couchdbConf.setBtoaFunction(btoa);
         if (config.db.https === true) {
             couchdbConf.setHttps();
@@ -139,14 +139,14 @@ export class LoggerToFile {
     }
 
     private setAuthorizationToLoggingUser(result: ValueWithLogger, config: LoggerToFileConfig, couchDBConf: CouchDBConf) {
-        couchDBConf.dbName = config.db.dbName;
+        couchDBConf.setDBName(config.db.dbName);
         couchDBConf.setCredentials(config.admin);
         return CouchDBWrapper.setDBAuthorization(couchDBConf, [config.loggingUser.username], result.log);
     }
 
     private loadDB(result: ValueWithLogger, config: LoggerToFileConfig, couchDBConf: CouchDBConf) {
         couchDBConf.setCredentials(config.loggingUser);
-        couchDBConf.dbName = config.db.dbName;
+        couchDBConf.setDBName(config.db.dbName);
         couchDBConf.setGenerator(new LogDocumentGenerator());
         return PouchDBWrapper.loadExternalDB(couchDBConf, result.log);
     }
@@ -154,7 +154,7 @@ export class LoggerToFile {
     private saveCurrentDocuments(result: {value: PouchDBWrapper, log: Logger}) {
         this.db = result.value;
         return result.value.getAllDocuments(result.log).pipe(
-            concatMap(docsResult => {
+            concatMap((docsResult: {value: LogDocument[], log: Logger}) => {
                 const messages: LogDocument[] = docsResult.value;
                 this.writeMessages(messages);
                 return docsResult.log.addTo(of(result.value));

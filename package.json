@@ -1,6 +1,6 @@
 {
-    "name": "@gorlug/log-file-writer",
-    "version": "0.0.1",
+    "name": "@gorlug/pouchdb-log-writer",
+    "version": "0.1.0",
     "description": "Write pouchdb logs to file",
     "main": "build/main/index.js",
     "typings": "build/main/index.d.ts",
@@ -52,7 +52,7 @@
         "node": ">=8.9"
     },
     "dependencies": {
-        "@gorlug/pouchdb": "git+ssh://git@git.gorlug.de:10022/nodejs/pouchdb.git#e1b9b906e6caa4730a58e1ede05d694aa21ad99a",
+        "@gorlug/pouchdb-rxjs": "0.1.2",
         "ts-node": "^7.0.1",
         "typescript": "^3.2.2",
         "xmlhttprequest-ssl": "^1.5.5",
