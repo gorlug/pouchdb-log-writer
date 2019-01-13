@@ -1,6 +1,5 @@
 FROM node:11.6.0-slim
-ADD pouchdb-log-writer /home/node/pouchdb-log-writer
-RUN chown -R node:node /home/node/pouchdb-log-writer
 USER node
-WORKDIR /home/node/pouchdb-log-writer
-CMD ["npm", "start", "/home/node/pouchdb-log-writer/etc/config.json"]
+RUN cd /home/node && npm install @gorlug/pouchdb-log-writer
+WORKDIR /home/node
+CMD ["node", "node_modules/@gorlug/pouchdb-log-writer/build/main/index.js", "/home/node/pouchdb-log-writer/etc/config.json"]

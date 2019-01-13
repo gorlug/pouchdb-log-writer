@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo docker build -t log-file-writer .
+sudo docker build -t pouchdb-log-writer .
