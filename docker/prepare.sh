@@ -1,9 +1,9 @@
 #!/bin/bash
 
-rm -rf log-file-writer
-mkdir log-file-writer
-cp ../package* log-file-writer/
-cp -r ../build log-file-writer/
-cp -r ../etc log-file-writer/
-cd log-file-writer
+rm -rf pouchdb-log-writer
+mkdir pouchdb-log-writer
+cp ../package* pouchdb-log-writer/
+cp -r ../build pouchdb-log-writer/
+cp -r ../etc pouchdb-log-writer/
+cd pouchdb-log-writer
 npm install --production
