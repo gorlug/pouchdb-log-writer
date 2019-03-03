@@ -52,7 +52,7 @@
         "node": ">=8.9"
     },
     "dependencies": {
-        "@gorlug/pouchdb-rxjs": "0.1.2",
+        "@gorlug/pouchdb-rxjs": "0.1.5",
         "ts-node": "^7.0.1",
         "typescript": "^3.2.2",
         "xmlhttprequest-ssl": "^1.5.5",
